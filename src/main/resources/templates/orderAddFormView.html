@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Order add</title>
+</head>
+<body>
+<form th:action="@{/addOrder}"   th:object = "${order}" method="post">
+
+    <label for="nazwa">Nazwa</label>
+    <p><input id="nazwa" type="text"   th:field = "*{nazwa}" />   </p>
+
+    <label for="data_order">data zamowienia</label>
+    <p><input id="data_order" type="text"   th:field = "*{data_order}" />   </p>
+
+    <label for="data_install">data instalacji</label>
+    <p><input id="data_install" type="text"   th:field = "*{data_install}" />   </p>
+
+    <label for="Klient">Klient</label>
+    <p><input id="klient" type="text"   th:field = "*{klient}" />   </p>
+
+    <label for="auto">Auto</label>
+    <p><input id="auto" type="text"   th:field = "*{auto}" />   </p>
+
+</form>
+</body>
+</html>
