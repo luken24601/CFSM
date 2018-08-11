@@ -2,13 +2,14 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Order {
     @Id
     @Column(name="id_order")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id_order;
+    private Long id_order;
     @Column(name="nazwa")
     private String nazwa;
     @Column(name="data_order")
@@ -28,6 +29,19 @@ public class Order {
         this.id_klient = id_klient;
         this.id_auto = id_auto;
     }
+
+    //Relations
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Auto")
+    // one order, many cars
+    private List<Auto> listAuto;
+
+    @OneToMany // one instalator many orders
+    @JoinColumn(name = "id_instalator")
+    private Instalator instalator;
+
+    @OneToMany // one callendsar many orders
+    @JoinColumn(name = "id_callendar")
+    private Calendar calendar;
 
     public Order() {
 

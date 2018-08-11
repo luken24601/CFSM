@@ -27,6 +27,9 @@ public class Instalator {
     private List<Klient> listaKlientow;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Instalator")
+    private List<Order> listOrder;
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Instalator")
     private List<Supplier> listSupplier;
 
     public Instalator() {
