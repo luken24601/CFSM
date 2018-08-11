@@ -35,11 +35,11 @@ public class Order {
     // one order, many cars
     private List<Auto> listAuto;
 
-    @OneToMany // one instalator many orders
+    @ManyToOne // one instalator many orders
     @JoinColumn(name = "id_instalator")
     private Instalator instalator;
 
-    @OneToMany // one callendsar many orders
+    @ManyToOne // one callendsar many orders
     @JoinColumn(name = "id_callendar")
     private Calendar calendar;
 

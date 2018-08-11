@@ -36,4 +36,12 @@ public class Folia {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Folia{" +
+                "id=" + id +
+                ", supplier=" + supplier +
+                ", auto=" + auto +
+                '}';
+    }
 }

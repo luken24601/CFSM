@@ -21,22 +21,19 @@ public class Klient {
     @Column(name="email")
     private String email;
 
+    //Relations
+
     @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy="Klient")
     private List<Auto> autoList;
+
+    @ManyToOne
+    @JoinColumn(name = "id_instalator")
+    private Instalator instalator;
 
     public List<Auto> getAutoList() {
         return autoList;
     }
 
-    public void addauto(Auto auto){
-        if(null==autoList){
-            autoList=new ArrayList<Auto>();
-        }autoList.add(auto);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_instalator")
-    private Instalator instalator;
 
     public void setAutoList(List<Auto> autoList) {
         this.autoList = autoList;
@@ -44,6 +41,11 @@ public class Klient {
 
     public Klient(){}
 
+    public void addauto(Auto auto){
+        if(null==autoList){
+            autoList=new ArrayList<Auto>();
+        }autoList.add(auto);
+    }
     public Klient(String imie, String nazwisko, int nrTel, String email) {
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -93,6 +95,14 @@ public class Klient {
 
     @Override
     public String toString() {
-        return String.format("Klient[id=%d, imie ='%s', nazwisko = '%s', nrTel=%d, email = '%s']");
+        return "Klient{" +
+                "id=" + id +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", nrTel=" + nrTel +
+                ", email='" + email + '\'' +
+                ", autoList=" + autoList +
+                ", instalator=" + instalator +
+                '}';
     }
 }

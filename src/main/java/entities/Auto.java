@@ -8,8 +8,7 @@ public class Auto {
     @Id
     @Column(name="id_auto")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private Long klientId;
+    private Long id_auto;
     @Column(name="marka")
     private String marka;
     @Column(name="model")
@@ -25,18 +24,19 @@ public class Auto {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_klient")
 
-    @OneToOne
+    @OneToOne(mappedBy = "Folia")
+    private Folia folia;
 
     private Klient klient;
 
     public Auto(){}
 
-    public Long getId() {
-        return id;
+    public Long getId_auto() {
+        return id_auto;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_auto(Long id_auto) {
+        this.id_auto = id_auto;
     }
 
     public String getMarka() {
@@ -87,13 +87,7 @@ public class Auto {
         this.klient = klient;
     }
 
-    public Long getKlientId() {
-        return klientId;
-    }
 
-    public void setKlientId(Long klientId) {
-        this.klientId = klientId;
-    }
 
     public Auto(String marka, String model, String typ, int rocznik, String nrRejstracyjny) {
         this.marka = marka;
@@ -106,7 +100,7 @@ public class Auto {
     @Override
     public String toString() {
         return "Auto{" +
-                "klientId=" + klientId +
+                "klientId=" +
                 ", marka='" + marka + '\'' +
                 ", model='" + model + '\'' +
                 ", typ='" + typ + '\'' +

@@ -23,6 +23,11 @@ public class Instalator {
     @Column(name="inst_postalcode")
     private String inst_postalcode;
 
+    //Relations
+    @OneToOne
+    @JoinColumn(name = "id_magazyn")
+    private Magazyn magazyn;
+
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Instalator")
     private List<Klient> listaKlientow;
 

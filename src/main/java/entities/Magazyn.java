@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Magazyn {
@@ -15,6 +16,15 @@ public class Magazyn {
 
     public Magazyn() {
     }
+
+    //Relations
+    @OneToOne (mappedBy = "Instalator")//one mag, one inst
+    private Instalator instalator;
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Auto")//one mag, many windowfilms
+    private List<Folia> listFolia;
+
+
 
     public Magazyn(Long id_magazyn, int stan, String folia_nazwa) {
         this.id_magazyn = id_magazyn;
