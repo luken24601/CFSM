@@ -4,23 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Instalator")
 public class Instalator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_instalator")
     private Long id_instalator;
-    @Column(name="inst_opinie")
     private String inst_opinie;
-    @Column(name="inst_ocena")
     private String inst_ocena;
-    @Column(name="inst_nazwa")
     private String inst_nazwa;
-    @Column(name="inst_adres1")
     private String inst_adres1;
-    @Column(name="inst_adres2")
     private String inst_adres2;
-    @Column(name="inst_postalcode")
     private String inst_postalcode;
 
     //Relations
@@ -28,13 +20,13 @@ public class Instalator {
     @JoinColumn(name = "id_magazyn")
     private Magazyn magazyn;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Instalator")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "instalator")
     private List<Klient> listaKlientow;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Instalator")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "instalator")
     private List<Order> listOrder;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Instalator")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "instalator")
     private List<Supplier> listSupplier;
 
     public Instalator() {
@@ -48,6 +40,38 @@ public class Instalator {
         this.inst_adres1 = inst_adres1;
         this.inst_adres2 = inst_adres2;
         this.inst_postalcode = inst_postalcode;
+    }
+
+    public Magazyn getMagazyn() {
+        return magazyn;
+    }
+
+    public void setMagazyn(Magazyn magazyn) {
+        this.magazyn = magazyn;
+    }
+
+    public List<Klient> getListaKlientow() {
+        return listaKlientow;
+    }
+
+    public void setListaKlientow(List<Klient> listaKlientow) {
+        this.listaKlientow = listaKlientow;
+    }
+
+    public List<Order> getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(List<Order> listOrder) {
+        this.listOrder = listOrder;
+    }
+
+    public List<Supplier> getListSupplier() {
+        return listSupplier;
+    }
+
+    public void setListSupplier(List<Supplier> listSupplier) {
+        this.listSupplier = listSupplier;
     }
 
     public Long getId_instalator() {

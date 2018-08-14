@@ -9,7 +9,6 @@ public class Calendar {
     @Column(name="id_calendar")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="date")
     private String date;
 
     //Relations

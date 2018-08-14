@@ -5,9 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Folia {
     @Id
-    @Column(name="id_folia")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id_folia;
     // nazwa i stan są powtórzone w magazynie
 
     @OneToOne
@@ -28,18 +27,18 @@ public class Folia {
 
     Folia(){}
 
-    public Long getId() {
-        return id;
+    public Long getId_folia() {
+        return id_folia;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_folia(Long id_folia) {
+        this.id_folia = id_folia;
     }
 
     @Override
     public String toString() {
         return "Folia{" +
-                "id=" + id +
+                "id_folia=" + id_folia +
                 ", supplier=" + supplier +
                 ", auto=" + auto +
                 '}';

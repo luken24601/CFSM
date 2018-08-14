@@ -6,22 +6,16 @@ import javax.persistence.*;
 public class Supplier {
 
     @Id
-    @Column(name="id_supplier")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_supplier;
-    @Column(name="nazwa")
     private String nazwa;
-    @Column(name="sup_adres1")
     private String sup_adres1;
-    @Column(name="sup_adres2")
     private String sup_adres2;
-    @Column(name="sup_postalcode")
     private String sup_postalcode;
 
-    public Supplier() {
-    }
 
-    @OneToOne(mappedBy = "Folia") //folia
+
+    @OneToOne(mappedBy = "folia") //folia
     private Folia folia;
 
 
@@ -29,7 +23,8 @@ public class Supplier {
     @JoinColumn(name = "id_instalator")
     private Instalator instalator;
 
-
+    public Supplier() {
+    }
     public Supplier(Long id_supplier, String nazwa, String sup_adres1, String sup_adres2, String sup_postalcode) {
         this.id_supplier = id_supplier;
         this.nazwa = nazwa;
@@ -76,6 +71,22 @@ public class Supplier {
 
     public void setSup_postalcode(String sup_postalcode) {
         this.sup_postalcode = sup_postalcode;
+    }
+
+    public Folia getFolia() {
+        return folia;
+    }
+
+    public void setFolia(Folia folia) {
+        this.folia = folia;
+    }
+
+    public Instalator getInstalator() {
+        return instalator;
+    }
+
+    public void setInstalator(Instalator instalator) {
+        this.instalator = instalator;
     }
 
     @Override

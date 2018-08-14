@@ -1,29 +1,22 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Klient")
 public class Klient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_klient")
-    private Long id;
-    @Column(name="imie")
+    private Long id_klient;
     private String imie;
-    @Column(name="nazwisko")
     private String nazwisko;
-    @Column(name="nrTel")
     private int nrTel;
-    @Column(name="email")
     private String email;
 
     //Relations
 
-    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy="Klient")
+    @OneToMany(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy="klient")
     private List<Auto> autoList;
 
     @ManyToOne
@@ -41,24 +34,14 @@ public class Klient {
 
     public Klient(){}
 
-    public void addauto(Auto auto){
-        if(null==autoList){
-            autoList=new ArrayList<Auto>();
-        }autoList.add(auto);
-    }
-    public Klient(String imie, String nazwisko, int nrTel, String email) {
+    public Klient(Long id_klient, String imie, String nazwisko, int nrTel, String email, List<Auto> autoList, Instalator instalator) {
+        this.id_klient = id_klient;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.nrTel = nrTel;
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.autoList = autoList;
+        this.instalator = instalator;
     }
 
     public String getImie() {
@@ -93,10 +76,26 @@ public class Klient {
         this.email = email;
     }
 
+    public Long getId_klient() {
+        return id_klient;
+    }
+
+    public void setId_klient(Long id_klient) {
+        this.id_klient = id_klient;
+    }
+
+    public Instalator getInstalator() {
+        return instalator;
+    }
+
+    public void setInstalator(Instalator instalator) {
+        this.instalator = instalator;
+    }
+
     @Override
     public String toString() {
         return "Klient{" +
-                "id=" + id +
+                "id_klient=" + id_klient +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", nrTel=" + nrTel +

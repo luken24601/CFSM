@@ -7,31 +7,16 @@ import java.util.List;
 @Entity
 public class Order {
     @Id
-    @Column(name="id_order")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_order;
-    @Column(name="nazwa")
     private String nazwa;
-    @Column(name="data_order")
     private Date data_order;
-    @Column(name="data_install")
     private Date data_install;
-    @Column(name="id_klient)")
     private Long id_klient;
-    @Column(name="id_auto")
     private Long id_auto;
 
-    public Order(Long id_order, String nazwa, Date data_order, Date data_install, Long id_klient, Long id_auto) {
-        this.id_order = id_order;
-        this.nazwa = nazwa;
-        this.data_order = data_order;
-        this.data_install = data_install;
-        this.id_klient = id_klient;
-        this.id_auto = id_auto;
-    }
-
     //Relations
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Auto")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "auto")
     // one order, many cars
     private List<Auto> listAuto;
 
@@ -45,6 +30,18 @@ public class Order {
 
     public Order() {
 
+    }
+
+    public Order(Long id_order, String nazwa, Date data_order, Date data_install, Long id_klient, Long id_auto, List<Auto> listAuto, Instalator instalator, Calendar calendar) {
+        this.id_order = id_order;
+        this.nazwa = nazwa;
+        this.data_order = data_order;
+        this.data_install = data_install;
+        this.id_klient = id_klient;
+        this.id_auto = id_auto;
+        this.listAuto = listAuto;
+        this.instalator = instalator;
+        this.calendar = calendar;
     }
 
     public Long getId_order() {
@@ -93,6 +90,30 @@ public class Order {
 
     public void setId_auto(Long id_auto) {
         this.id_auto = id_auto;
+    }
+
+    public List<Auto> getListAuto() {
+        return listAuto;
+    }
+
+    public void setListAuto(List<Auto> listAuto) {
+        this.listAuto = listAuto;
+    }
+
+    public Instalator getInstalator() {
+        return instalator;
+    }
+
+    public void setInstalator(Instalator instalator) {
+        this.instalator = instalator;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 
     @Override
